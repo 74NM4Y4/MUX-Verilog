@@ -1,0 +1,15 @@
+module MUX_4_1_Dataflow(
+    input a0,
+    input a1,
+    input a2,
+    input a3,
+    input s0,
+    input s1,
+    output Output
+    );
+    
+    wire s0bar,s1bar;
+    assign s0bar = ~s0;
+    assign s1bar = ~s1;
+    assign Output = (a0&s1bar&s0bar) | (a1&s1bar&s0) | (a2&s1&s0bar) | (a3&s1&s0);
+endmodule
