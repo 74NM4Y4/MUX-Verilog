@@ -1,0 +1,39 @@
+module MUX_4_1_Structural(
+    output Output,
+    input a0,
+    input a1,
+    input a2,
+    input a3,
+    input s0,
+    input s1
+    );
+    wire t1,t2;
+    MUX_2_1_Structural Mx1(t1,a0,a1,s1);
+    MUX_2_1_Structural Mx2(t2,a2,a3,s1);
+    MUX_2_1_Structural Mx3(Output,t1,t2,s0);
+endmodule
+
+// Code for MUX_2_1_Structural is given below
+
+
+module and_gate(output a, input b, c);
+assign a = b & c;
+endmodule
+
+module not_gate(output d, input e);
+assign d = ~ e;
+endmodule
+
+module or_gate(output l, input m, n);
+assign l = m | n;
+endmodule
+
+module MUX_2_1_Structural(Out, a0, a1, s);
+output Out;
+input a0,a1,s;
+wire T1, T2, T3;
+and_gate u1(T1, a1, s); //T1 = a1 & s
+not_gate u2(T2, s);     //T2 = !s
+and_gate u3(T3, a0, T2); //T3 = a0 & (!s)
+or_gate u4(Out, T1, T3); // Out = T1 & T3
+endmodule
