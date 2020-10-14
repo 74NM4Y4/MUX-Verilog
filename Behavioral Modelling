@@ -1,0 +1,42 @@
+//Using "case"
+
+
+module MUX_4_1_Behav_Case(a0,a1,a2,a3,s0,s1,Output); 
+    input wire a0,a1,a2,a3,s0,s1;
+    output reg Output;
+    always@(a0 or a1 or a2 or a3 or s0 or s1)
+    begin
+      case(s1 | s0)
+         2'b00 : Output <= a0;
+         2'b01 : Output <= a1;
+         2'b10 : Output <= a2;
+         2'b11 : Output <= a3;
+      endcase
+    end       
+endmodule
+
+
+//Using "if-else"
+
+
+module MUX_4_1_Behav_if_else(
+    input a0,
+    input a1,
+    input a2,
+    input a3,
+    input s0,
+    input s1,
+    output reg Output //make it reg
+    );
+    always @(s1,s0)
+    begin
+      if((s1==0)&(s0==0))
+      Output = a0;
+      else if ((s1==0)&(s0==1))
+      Output = a1;
+      else if ((s1==0)&(s0==1))
+      Output = a2;
+      else 
+      Output = a3;
+    end  
+endmodule
