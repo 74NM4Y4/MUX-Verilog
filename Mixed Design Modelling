@@ -1,0 +1,25 @@
+module MUX_4_1_Mixed(
+    input a0,
+    input a1,
+    input a2,
+    input a3,
+    input s0,
+    input s1,
+    output Output
+    );
+    wire temp1,temp2;
+    MUX_2_1_Mixed mx1(temp1,a0,a1,s1);
+    MUX_2_1_Mixed mx2(temp2,a2,a3,s1);
+    MUX_2_1_Mixed mx3(Output,temp1,temp0,s0);
+endmodule
+
+
+//Code for MUX_2_1_Mixed is given below
+
+
+module MUX_2_1_Mixed(               
+    input s,a0,a1,
+    output Out
+    );
+    assign Out = s?a0:a1;       //if s =0 : Out = a0   if s =1 : Out = a1
+endmodule
